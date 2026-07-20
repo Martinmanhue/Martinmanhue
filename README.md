@@ -1,40 +1,28 @@
 # Hi, I'm Martín 👋
 
-I'm a software developer passionate about building tools that make programming simpler.
+I'm a software developer passionate about creating high-quality software and exploring challenging ideas.
 
-I'm currently building **Iter**, an open-source project with a simple vision:
+## 🚀 What I'm working on
 
-> **One API. Everything.**
-
-The goal of Iter is to provide a consistent interface for interacting with files, web resources, databases, cloud services, AI models, and many other technologies through a single, intuitive API.
-
-## 🚀 What I'm currently building
-
-- 🚀 Iter
-- 🐍 Python tools and libraries
-- 🌐 Software architecture
+- 🐍 Python
+- 🏗️ Software Architecture
 - 🤖 Artificial Intelligence
 - 🔐 Cybersecurity
 - 🌍 Open Source
 
 ## 💡 About me
 
-I enjoy understanding how software works internally and designing systems that hide complexity instead of adding more of it.
+I enjoy understanding how software works internally and designing clean, scalable systems.
 
-My long-term goal is to build technology that developers genuinely enjoy using.
+I'm always learning, experimenting, and building new projects.
 
-## 📈 Current Focus
+## 🎯 Goal
 
-Building **Iter** one release at a time.
-
-Every update should make the project simpler, faster, and more reliable than the last.
+My goal is to create software that solves real problems and has a lasting impact.
 
 ---
 
-> *Simple software is difficult to build, but effortless to use.*
-
-<!--
-**Martinmanhue/Martinmanhue** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+> *Great software begins with great ideas.* `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
 
