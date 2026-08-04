@@ -4,7 +4,7 @@
 
 # Iter
 
-### Una API coherente para recursos, formatos, bibliotecas y backends.
+### Una experiencia común para recursos, formatos, bibliotecas y backends.
 
 [![GitHub stars](https://img.shields.io/github/stars/Martinmanhue/Martinmanhue?style=for-the-badge&logo=github&label=ESTRELLAS)](https://github.com/Martinmanhue/Martinmanhue/stargazers)
 [![Preview](https://img.shields.io/badge/estado-vista%20previa-74c0fc?style=for-the-badge)](ITER_PREVIEW.md)
@@ -28,63 +28,67 @@ Iter parte de una idea sencilla:
 
 > **Aprende una vez. Usa cualquier biblioteca.**
 
-No significa que todas las bibliotecas ya estén integradas. Significa que Iter está construyendo una capa común para expresar intenciones repetidas mediante una API coherente, manteniendo las diferencias importantes de cada backend.
+La experiencia de usuario no debería comenzar con imports, configuración auxiliar ni código que no forma parte de su intención.
 
-## Iter en 30 segundos
+## Iter en 10 segundos
 
-```python
-import iter
-
-resource = iter.open("data.json")
-converted = iter.convert(resource, "csv")
-iter.export(converted, "data.csv")
+```iter
+data = iter open "data.json"
+csv = iter convert data to "csv"
+iter export csv as "data.csv"
 ```
 
-La intención sigue siendo clara:
+Tres intenciones claras:
 
-1. abrir un recurso;
-2. convertirlo;
-3. exportarlo.
+1. abrir;
+2. convertir;
+3. exportar.
 
-Iter identifica el recurso, resuelve su formato, consulta los adaptadores compatibles y coordina la operación.
+Iter debe encargarse de identificar el recurso, resolver el formato, seleccionar un adaptador compatible y coordinar la operación.
 
-## Everything is a Resource
+## Crear un recurso sin código auxiliar
 
-El modelo central representa archivos, datos y recursos web mediante objetos `Resource`.
+```iter
+project = iter create "data" {
+    project: "Iter"
+    status: "release-candidate"
+}
 
-```python
-resource = iter.create(
-    "data",
-    name="project.json",
-    data={
-        "project": "Iter",
-        "status": "release-candidate",
-    },
-    format="json",
-)
-
-iter.save(resource, destination="project.json")
-reopened = iter.open("project.json")
+iter save project as "project.json"
+reopened = iter open "project.json"
+show reopened.data
 ```
+
+## Usar una biblioteca
+
+```iter
+iter use "pandas"
+data = iter open "sales.csv"
+summary = iter analyze data
+show summary
+```
+
+La idea no es ocultar todas las diferencias entre herramientas. Es permitir que el usuario exprese una intención común y que Iter resuelva cómo ejecutarla.
 
 ## Lo que busca cambiar
 
 | Hoy | Con Iter |
 |---|---|
-| Una interfaz distinta para cada herramienta | Una intención común y predecible |
+| Imports y configuración antes de empezar | La intención aparece primero |
+| Una interfaz distinta para cada herramienta | Una forma común de expresar operaciones |
 | Código de integración repetido | Adaptadores reutilizables |
 | Resolución manual de formatos y backends | Resolución coordinada por el motor |
-| Cambiar de herramienta implica reescribir flujos | La API pública conserva la intención |
+| Cambiar de herramienta implica rehacer el flujo | El flujo conserva su significado |
 
 ## Arquitectura
 
 ```mermaid
 flowchart TD
-    U[Usuario] --> API[API pública]
-    API --> R[Resolver]
+    U[Usuario] --> L[Lenguaje y API de Iter]
+    L --> R[Resolver]
     R --> G[Registry]
     G --> A[Adapter]
-    API --> E[Engine]
+    L --> E[Engine]
     E --> A
     E --> X[Resource]
 ```
@@ -95,7 +99,7 @@ flowchart TD
 - `Adapter`: ejecución de operaciones concretas.
 - `Engine`: coordinación del sistema.
 
-## Funciones previstas para la primera publicación
+## Operaciones previstas para la primera publicación
 
 | Área | Operaciones |
 |---|---|
@@ -106,9 +110,8 @@ flowchart TD
 | Internet | `download`, `upload` |
 | Gestión | `copy`, `move`, `rename`, `delete` |
 | Colecciones | `list`, `count`, `filter` |
-| Adaptadores | `adapters`, `register_adapter`, `unregister_adapter` |
-| Backend | `use`, `reset_backend`, `current_backend` |
-| Diagnóstico | `statistics`, `about`, `iter doctor` |
+| Backend | `use`, `reset`, `current` |
+| Diagnóstico | `about`, `capabilities`, `adapters`, `doctor` |
 
 ## Estado actual
 
@@ -116,13 +119,11 @@ flowchart TD
 - **Situación:** corrección de errores y validación privada.
 - **Código principal:** privado mientras termina la auditoría de publicación.
 - **PyPI:** todavía no existe un paquete oficial de Iter Project.
-- **Demostración actual:** documentación, ejemplos y landing técnica sin instalación.
+- **Demostración actual:** sintaxis, arquitectura y experiencia previstas, sin instalación.
 
-> No instales paquetes con nombres similares pensando que son oficiales. La primera distribución auténtica se anunciará desde este perfil.
+> La sintaxis pública debe validarse antes del lanzamiento. No se anunciará como disponible ninguna instrucción que todavía no funcione de forma verificable.
 
 ## Participa antes del lanzamiento
-
-La primera pregunta pública ya está abierta:
 
 ### [¿Qué debería unificar Iter primero?](https://github.com/Martinmanhue/Martinmanhue/issues/1)
 
@@ -138,7 +139,7 @@ Puedes proponer un formato, una biblioteca, un backend o una operación que actu
 
 ## Transparencia
 
-Iter todavía no afirma compatibilidad universal ni integración con todas las bibliotecas. Solo se presentarán como disponibles las funciones implementadas y verificadas.
+Iter todavía no afirma compatibilidad universal ni que su sintaxis final sea inmutable.
 
 No se publica todavía:
 
@@ -153,7 +154,7 @@ No se publica todavía:
 
 <div align="center">
 
-### ¿Crees que las herramientas deberían compartir una API más coherente?
+### ¿Crees que programar debería empezar por la intención y no por la configuración?
 
 ⭐ **Apoya Iter con una estrella y acompaña el lanzamiento.**
 
