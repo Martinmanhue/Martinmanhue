@@ -22,7 +22,11 @@ iter.export(converted, "data.csv")
 
 Iter identifica el recurso, resuelve su formato, selecciona un adaptador compatible y coordina la operación mediante una API común.
 
-**[Ver la demostración técnica completa](ITER_PREVIEW.md)**
+- **[Ver la demostración técnica completa](ITER_PREVIEW.md)**
+- **[Leer el artículo técnico preparado para comunidades de desarrolladores](DEV_ARTICLE.md)**
+- **[Ver el código de la landing visual](../../tree/gh-pages)**
+
+La landing está preparada en la rama `gh-pages`. No contiene descargas, paquetes ni acceso al código privado.
 
 ## Estado actual
 
@@ -59,6 +63,8 @@ Por ahora, Iter se presentará únicamente mediante:
 - documentación técnica;
 - ejemplos de código;
 - demostraciones grabadas o capturas reproducibles;
+- una landing técnica sin descargas;
+- artículos en comunidades de desarrolladores;
 - GitHub Releases cuando la versión esté preparada.
 
 No se publicará un paquete de demostración. La primera instalación disponible corresponderá a una distribución oficial de Iter.
