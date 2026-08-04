@@ -24,7 +24,7 @@ Iter identifica el recurso, resuelve su formato, selecciona un adaptador compati
 
 - **[Ver la demostración técnica completa](ITER_PREVIEW.md)**
 - **[Leer el artículo técnico preparado para comunidades de desarrolladores](DEV_ARTICLE.md)**
-- **[Ver el código de la landing visual](../../tree/gh-pages)**
+- **[Ver el código de la landing visual](https://github.com/Martinmanhue/Martinmanhue/tree/gh-pages)**
 
 La landing está preparada en la rama `gh-pages`. No contiene descargas, paquetes ni acceso al código privado.
 
