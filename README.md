@@ -14,7 +14,7 @@
 
 ⭐ **Pulsa `Star` arriba a la derecha para apoyar Iter y seguir su evolución.**
 
-[Ver la demostración](ITER_PREVIEW.md) · [Explorar la landing](https://github.com/Martinmanhue/Martinmanhue/tree/gh-pages) · [Leer el artículo técnico](DEV_ARTICLE.md)
+[Ver la demostración](ITER_PREVIEW.md) · [Proponer una prioridad](https://github.com/Martinmanhue/Martinmanhue/issues/1) · [Explorar la landing](https://github.com/Martinmanhue/Martinmanhue/tree/gh-pages) · [Compartir Iter](SHARE_ITER.md)
 
 </div>
 
@@ -120,12 +120,21 @@ flowchart TD
 
 > No instales paquetes con nombres similares pensando que son oficiales. La primera distribución auténtica se anunciará desde este perfil.
 
+## Participa antes del lanzamiento
+
+La primera pregunta pública ya está abierta:
+
+### [¿Qué debería unificar Iter primero?](https://github.com/Martinmanhue/Martinmanhue/issues/1)
+
+Puedes proponer un formato, una biblioteca, un backend o una operación que actualmente exija demasiado código de integración.
+
 ## Qué puedes hacer hoy
 
 1. ⭐ Pulsa **Star** para ser uno de los primeros seguidores.
 2. Lee la [vista previa completa](ITER_PREVIEW.md).
-3. Comparte qué formato, biblioteca o backend debería priorizar Iter.
-4. Regresa durante el lanzamiento para probar la primera distribución oficial.
+3. Responde a la [pregunta pública](https://github.com/Martinmanhue/Martinmanhue/issues/1).
+4. Utiliza los [mensajes preparados para compartir Iter](SHARE_ITER.md).
+5. Regresa durante el lanzamiento para probar la primera distribución oficial.
 
 ## Transparencia
 
