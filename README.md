@@ -1,16 +1,36 @@
+<div align="center">
+
+![Iter — Aprende una vez. Usa cualquier biblioteca.](assets/iter-hero.svg)
+
 # Iter
 
-### Aprende una vez. Usa cualquier biblioteca.
+### Una API coherente para recursos, formatos, bibliotecas y backends.
 
-**Iter** es una interfaz universal para trabajar con recursos, formatos, bibliotecas y backends mediante una API coherente.
+[![GitHub stars](https://img.shields.io/github/stars/Martinmanhue/Martinmanhue?style=for-the-badge&logo=github&label=ESTRELLAS)](https://github.com/Martinmanhue/Martinmanhue/stargazers)
+[![Preview](https://img.shields.io/badge/estado-vista%20previa-74c0fc?style=for-the-badge)](ITER_PREVIEW.md)
+[![Version](https://img.shields.io/badge/versión-0.3.0--rc.2-8ce99a?style=for-the-badge)](#estado-actual)
 
-## Qué problema busca resolver
+**Meta del primer día: reunir a los primeros 10 desarrolladores que quieran seguir el lanzamiento.**
 
-Cada biblioteca suele utilizar nombres, estructuras y flujos diferentes. Iter propone una capa común que conserva las capacidades importantes de cada backend y reduce el código de integración repetido.
+⭐ **Pulsa `Star` arriba a la derecha para apoyar Iter y seguir su evolución.**
 
-## Vista previa técnica
+[Ver la demostración](ITER_PREVIEW.md) · [Explorar la landing](https://github.com/Martinmanhue/Martinmanhue/tree/gh-pages) · [Leer el artículo técnico](DEV_ARTICLE.md)
 
-Esta es una demostración de cómo se utilizará Iter cuando se publique. Todavía no es un paquete instalable.
+</div>
+
+---
+
+## El problema
+
+Abrir datos, convertir formatos, buscar recursos o cambiar de backend suele obligar a aprender una interfaz diferente para cada biblioteca.
+
+Iter parte de una idea sencilla:
+
+> **Aprende una vez. Usa cualquier biblioteca.**
+
+No significa que todas las bibliotecas ya estén integradas. Significa que Iter está construyendo una capa común para expresar intenciones repetidas mediante una API coherente, manteniendo las diferencias importantes de cada backend.
+
+## Iter en 30 segundos
 
 ```python
 import iter
@@ -20,59 +40,114 @@ converted = iter.convert(resource, "csv")
 iter.export(converted, "data.csv")
 ```
 
-Iter identifica el recurso, resuelve su formato, selecciona un adaptador compatible y coordina la operación mediante una API común.
+La intención sigue siendo clara:
 
-- **[Ver la demostración técnica completa](ITER_PREVIEW.md)**
-- **[Leer el artículo técnico preparado para comunidades de desarrolladores](DEV_ARTICLE.md)**
-- **[Ver el código de la landing visual](https://github.com/Martinmanhue/Martinmanhue/tree/gh-pages)**
+1. abrir un recurso;
+2. convertirlo;
+3. exportarlo.
 
-La landing está preparada en la rama `gh-pages`. No contiene descargas, paquetes ni acceso al código privado.
+Iter identifica el recurso, resuelve su formato, consulta los adaptadores compatibles y coordina la operación.
 
-## Estado actual
+## Everything is a Resource
 
-- **Versión:** `0.3.0-rc.2`
-- **Etapa:** candidata de lanzamiento en validación privada
-- **Lenguaje principal:** Python
-- **Prioridades:** corregir los errores restantes, completar las pruebas y preparar la publicación oficial
-- **Repositorio principal:** privado mientras termina la auditoría pública
-- **PyPI:** todavía no existe un paquete oficial publicado por Iter Project
+El modelo central representa archivos, datos y recursos web mediante objetos `Resource`.
 
-> No instales paquetes con nombres parecidos pensando que pertenecen a Iter Project. La publicación oficial se anunciará únicamente desde este perfil y los canales técnicos oficiales.
+```python
+resource = iter.create(
+    "data",
+    name="project.json",
+    data={
+        "project": "Iter",
+        "status": "release-candidate",
+    },
+    format="json",
+)
+
+iter.save(resource, destination="project.json")
+reopened = iter.open("project.json")
+```
+
+## Lo que busca cambiar
+
+| Hoy | Con Iter |
+|---|---|
+| Una interfaz distinta para cada herramienta | Una intención común y predecible |
+| Código de integración repetido | Adaptadores reutilizables |
+| Resolución manual de formatos y backends | Resolución coordinada por el motor |
+| Cambiar de herramienta implica reescribir flujos | La API pública conserva la intención |
 
 ## Arquitectura
 
-- `Resource`: representación universal de archivos, datos y recursos web
-- `Adapter`: integración de operaciones y backends
-- `Registry`: registro y selección de adaptadores
-- `Resolver`: detección de formatos, tipos y compatibilidad
-- `Engine`: coordinación de las operaciones
+```mermaid
+flowchart TD
+    U[Usuario] --> API[API pública]
+    API --> R[Resolver]
+    R --> G[Registry]
+    G --> A[Adapter]
+    API --> E[Engine]
+    E --> A
+    E --> X[Resource]
+```
 
-## Principios
+- `Resource`: representación universal de archivos, datos y recursos web.
+- `Resolver`: identificación de formatos, tipos y backends.
+- `Registry`: registro y selección de adaptadores.
+- `Adapter`: ejecución de operaciones concretas.
+- `Engine`: coordinación del sistema.
 
-- Everything is a Resource.
-- Probar antes de anunciar progreso.
-- Privacidad y permisos por diseño.
-- Interfaces simples sin ocultar diferencias importantes.
-- Lanzamientos pequeños, útiles y verificables.
+## Funciones previstas para la primera publicación
 
-## Comunicación inicial
+| Área | Operaciones |
+|---|---|
+| Entrada y salida | `open`, `create`, `save`, `close` |
+| Resolución | `resolve` |
+| Búsqueda | `find`, `search` |
+| Transformación | `convert`, `export` |
+| Internet | `download`, `upload` |
+| Gestión | `copy`, `move`, `rename`, `delete` |
+| Colecciones | `list`, `count`, `filter` |
+| Adaptadores | `adapters`, `register_adapter`, `unregister_adapter` |
+| Backend | `use`, `reset_backend`, `current_backend` |
+| Diagnóstico | `statistics`, `about`, `iter doctor` |
 
-Por ahora, Iter se presentará únicamente mediante:
+## Estado actual
 
-- GitHub;
-- documentación técnica;
-- ejemplos de código;
-- demostraciones grabadas o capturas reproducibles;
-- una landing técnica sin descargas;
-- artículos en comunidades de desarrolladores;
-- GitHub Releases cuando la versión esté preparada.
+- **Versión candidata:** `0.3.0-rc.2`
+- **Situación:** corrección de errores y validación privada.
+- **Código principal:** privado mientras termina la auditoría de publicación.
+- **PyPI:** todavía no existe un paquete oficial de Iter Project.
+- **Demostración actual:** documentación, ejemplos y landing técnica sin instalación.
 
-No se publicará un paquete de demostración. La primera instalación disponible corresponderá a una distribución oficial de Iter.
+> No instales paquetes con nombres similares pensando que son oficiales. La primera distribución auténtica se anunciará desde este perfil.
 
-## Próximamente
+## Qué puedes hacer hoy
 
-Se mostrarán ejemplos reales de `open`, `create`, `save`, `convert`, `export`, resolución de formatos y selección de adaptadores. El código principal permanecerá privado hasta terminar la auditoría de seguridad, la revisión de la licencia y la preparación de la distribución pública.
+1. ⭐ Pulsa **Star** para ser uno de los primeros seguidores.
+2. Lee la [vista previa completa](ITER_PREVIEW.md).
+3. Comparte qué formato, biblioteca o backend debería priorizar Iter.
+4. Regresa durante el lanzamiento para probar la primera distribución oficial.
+
+## Transparencia
+
+Iter todavía no afirma compatibilidad universal ni integración con todas las bibliotecas. Solo se presentarán como disponibles las funciones implementadas y verificadas.
+
+No se publica todavía:
+
+- el código fuente privado completo;
+- Iter Server;
+- Iter Storage;
+- credenciales, tokens o información personal;
+- funciones sin pruebas verificables;
+- ningún paquete demostrativo o instalación anticipada.
 
 ---
 
-> Iter — una interfaz común para un ecosistema de herramientas diferentes.
+<div align="center">
+
+### ¿Crees que las herramientas deberían compartir una API más coherente?
+
+⭐ **Apoya Iter con una estrella y acompaña el lanzamiento.**
+
+**Iter — Everything is a Resource.**
+
+</div>
