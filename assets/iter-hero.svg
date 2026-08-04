@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Iter — Aprende una vez. Usa cualquier biblioteca.</title>
+  <desc id="desc">Portada técnica de Iter, una interfaz común para recursos, formatos, bibliotecas y backends.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.56" stop-color="#0d2138"/>
+      <stop offset="1" stop-color="#102b35"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#74c0fc"/>
+      <stop offset="1" stop-color="#8ce99a"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="520" rx="34" fill="url(#bg)"/>
+  <circle cx="1080" cy="85" r="180" fill="#74c0fc" opacity="0.13" filter="url(#glow)"/>
+  <circle cx="1130" cy="430" r="180" fill="#8ce99a" opacity="0.11" filter="url(#glow)"/>
+  <g transform="translate(76 72)">
+    <rect width="74" height="74" rx="20" fill="#102840" stroke="#74c0fc" stroke-width="2"/>
+    <text x="37" y="51" text-anchor="middle" font-family="Inter,Segoe UI,sans-serif" font-size="42" font-weight="800" fill="#f4f7fb">I</text>
+    <text x="96" y="51" font-family="Inter,Segoe UI,sans-serif" font-size="46" font-weight="800" fill="#f4f7fb">Iter</text>
+    <rect x="0" y="114" width="310" height="38" rx="19" fill="#132b45" stroke="#284b6d"/>
+    <text x="155" y="139" text-anchor="middle" font-family="Inter,Segoe UI,sans-serif" font-size="18" font-weight="700" fill="#b9dfff">Vista previa técnica · 0.3.0-rc.2</text>
+    <text x="0" y="225" font-family="Inter,Segoe UI,sans-serif" font-size="58" font-weight="800" fill="#f4f7fb">Aprende una vez.</text>
+    <text x="0" y="292" font-family="Inter,Segoe UI,sans-serif" font-size="58" font-weight="800" fill="url(#accent)">Usa cualquier biblioteca.</text>
+    <text x="0" y="350" font-family="Inter,Segoe UI,sans-serif" font-size="23" fill="#a8b6ca">Una API coherente para recursos, formatos, bibliotecas y backends.</text>
+    <text x="0" y="410" font-family="Inter,Segoe UI,sans-serif" font-size="20" font-weight="700" fill="#8ce99a">Everything is a Resource.</text>
+  </g>
+  <g transform="translate(835 126)">
+    <rect width="360" height="268" rx="22" fill="#081522" stroke="#28435f" stroke-width="2"/>
+    <circle cx="25" cy="24" r="6" fill="#ff6b6b"/><circle cx="45" cy="24" r="6" fill="#ffd43b"/><circle cx="65" cy="24" r="6" fill="#69db7c"/>
+    <text x="26" y="82" font-family="SFMono-Regular,Consolas,monospace" font-size="20" fill="#c9e7ff">import</text>
+    <text x="102" y="82" font-family="SFMono-Regular,Consolas,monospace" font-size="20" fill="#f4f7fb">iter</text>
+    <text x="26" y="126" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#f4f7fb">resource = iter.open(</text>
+    <text x="243" y="126" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#8ce99a">"data.json"</text>
+    <text x="344" y="126" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#f4f7fb">)</text>
+    <text x="26" y="170" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#f4f7fb">result = iter.convert(</text>
+    <text x="245" y="170" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#74c0fc">resource</text>
+    <text x="323" y="170" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#f4f7fb">,</text>
+    <text x="26" y="204" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#8ce99a">    "csv"</text>
+    <text x="118" y="204" font-family="SFMono-Regular,Consolas,monospace" font-size="18" fill="#f4f7fb">)</text>
+    <text x="26" y="246" font-family="SFMono-Regular,Consolas,monospace" font-size="17" fill="#73869b"># one intent, one coherent API</text>
+  </g>
+</svg>
