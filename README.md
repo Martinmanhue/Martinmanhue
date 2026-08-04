@@ -15,7 +15,13 @@ Construyo software para comprender sistemas complejos, resolver problemas reales
 
 Actualmente desarrollo **Iter**, un proyecto que busca ofrecer una experiencia coherente para trabajar con recursos, formatos, bibliotecas y backends.
 
-La presentación pública de Iter tendrá su propio repositorio separado. El código completo y las herramientas internas permanecen en un repositorio privado.
+### [Explorar la vista previa pública de Iter →](https://github.com/Martinmanhue/iter-public)
+
+```iter
+iter convert data.json to data.csv
+```
+
+La presentación pública, la arquitectura y la hoja de ruta están en `iter-public`. El código completo y las herramientas internas permanecen en un repositorio privado.
 
 ## Principios de trabajo
 
