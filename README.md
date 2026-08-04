@@ -8,23 +8,30 @@
 
 Cada biblioteca suele utilizar nombres, estructuras y flujos diferentes. Iter propone una capa común que conserva las capacidades importantes de cada backend y reduce el código de integración repetido.
 
+## Vista previa técnica
+
+Esta es una demostración de cómo se utilizará Iter cuando se publique. Todavía no es un paquete instalable.
+
 ```python
 import iter
 
 resource = iter.open("data.json")
-print(resource.data)
+converted = iter.convert(resource, "csv")
+iter.export(converted, "data.csv")
 ```
+
+Iter identifica el recurso, resuelve su formato, selecciona un adaptador compatible y coordina la operación mediante una API común.
 
 ## Estado actual
 
 - **Versión:** `0.3.0-rc.2`
 - **Etapa:** candidata de lanzamiento en validación privada
 - **Lenguaje principal:** Python
-- **Prioridades:** estabilidad, seguridad, documentación y pruebas reproducibles
+- **Prioridades:** corregir los errores restantes, completar las pruebas y preparar la publicación oficial
 - **Repositorio principal:** privado mientras termina la auditoría pública
 - **PyPI:** todavía no existe un paquete oficial publicado por Iter Project
 
-> No instales paquetes con nombres parecidos pensando que pertenecen a Iter Project. La publicación oficial se anunciará únicamente desde este perfil y los canales oficiales del proyecto.
+> No instales paquetes con nombres parecidos pensando que pertenecen a Iter Project. La publicación oficial se anunciará únicamente desde este perfil y los canales técnicos oficiales.
 
 ## Arquitectura
 
@@ -42,19 +49,21 @@ print(resource.data)
 - Interfaces simples sin ocultar diferencias importantes.
 - Lanzamientos pequeños, útiles y verificables.
 
-## Canales técnicos previstos
+## Comunicación inicial
 
-La comunicación inicial de Iter se concentrará en:
+Por ahora, Iter se presentará únicamente mediante:
 
 - GitHub;
-- GitHub Releases;
 - documentación técnica;
-- TestPyPI para validar el proceso de distribución;
-- PyPI cuando la versión pública esté preparada y autorizada.
+- ejemplos de código;
+- demostraciones grabadas o capturas reproducibles;
+- GitHub Releases cuando la versión esté preparada.
+
+No se publicará un paquete de demostración. La primera instalación disponible corresponderá a una distribución oficial de Iter.
 
 ## Próximamente
 
-Se publicarán demostraciones reproducibles, documentación técnica y avances comprobables. El código principal permanecerá privado hasta terminar la auditoría de seguridad, la revisión de la licencia y la preparación de la distribución pública.
+Se mostrarán ejemplos reales de `open`, `create`, `save`, `convert`, `export`, resolución de formatos y selección de adaptadores. El código principal permanecerá privado hasta terminar la auditoría de seguridad, la revisión de la licencia y la preparación de la distribución pública.
 
 ---
 
