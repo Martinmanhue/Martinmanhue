@@ -22,6 +22,8 @@ iter.export(converted, "data.csv")
 
 Iter identifica el recurso, resuelve su formato, selecciona un adaptador compatible y coordina la operación mediante una API común.
 
+**[Ver la demostración técnica completa](ITER_PREVIEW.md)**
+
 ## Estado actual
 
 - **Versión:** `0.3.0-rc.2`
