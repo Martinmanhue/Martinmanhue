@@ -1,21 +1,19 @@
-# Iter: una interfaz común para recursos, formatos, bibliotecas y backends
+# Iter: programar desde la intención, no desde la configuración
 
 > Esta publicación es una vista previa técnica. Iter todavía no está publicado en PyPI y no existe un paquete oficial instalable.
 
-Las bibliotecas suelen resolver problemas parecidos mediante nombres, estructuras y flujos distintos.
+Abrir un recurso, convertir datos, exportar un archivo o cambiar de backend suele exigir aprender una interfaz diferente cada vez.
 
-Abrir un recurso, convertir datos, exportar un archivo o cambiar de backend puede exigir aprender una interfaz diferente cada vez. Iter nace de una idea sencilla:
+Iter nace de una idea sencilla:
 
 ## Aprende una vez. Usa cualquier biblioteca.
 
-Iter propone una API coherente para expresar la intención del usuario y delegar la operación en un adaptador compatible.
+La experiencia de usuario no debería comenzar con imports, rutas temporales ni configuración auxiliar. Debería comenzar con la intención.
 
-```python
-import iter
-
-resource = iter.open("data.json")
-converted = iter.convert(resource, "csv")
-iter.export(converted, "data.csv")
+```iter
+data = iter open "data.json"
+csv = iter convert data to "csv"
+iter export csv as "data.csv"
 ```
 
 La intención permanece clara:
@@ -24,52 +22,49 @@ La intención permanece clara:
 2. convertirlo;
 3. exportarlo.
 
-Iter se encarga de identificar el recurso, resolver su formato, consultar los adaptadores disponibles y coordinar la ejecución.
+Iter debe encargarse de identificar el recurso, resolver el formato, consultar los adaptadores disponibles y coordinar la ejecución.
 
-## Everything is a Resource
+## Crear y guardar sin código auxiliar
 
-El modelo central de Iter representa archivos, datos y recursos web mediante objetos `Resource`.
+```iter
+project = iter create "data" {
+    project: "Iter"
+    status: "preview"
+}
 
-```python
-from pathlib import Path
-import tempfile
-import iter
-
-with tempfile.TemporaryDirectory() as folder:
-    destination = Path(folder) / "project.json"
-
-    resource = iter.create(
-        "data",
-        name=destination.name,
-        source=destination,
-        data={
-            "project": "Iter",
-            "status": "preview",
-        },
-        format="json",
-    )
-
-    iter.save(resource, parents=True)
-
-    reopened = iter.open(destination)
-    print(reopened.data)
+iter save project as "project.json"
+reopened = iter open "project.json"
+show reopened.data
 ```
 
 Salida prevista:
 
 ```text
-{'project': 'Iter', 'status': 'preview'}
+{project: "Iter", status: "preview"}
 ```
 
-## Arquitectura
+## Usar una biblioteca mediante una intención común
 
-Iter separa la representación, la resolución, la selección y la ejecución.
+```iter
+iter use "pandas"
+data = iter open "sales.csv"
+summary = iter analyze data
+show summary
+```
+
+El usuario expresa qué quiere hacer. Iter resuelve qué backend o adaptador puede realizar la operación.
+
+## Everything is a Resource
+
+El modelo central de Iter representa archivos, datos y recursos web mediante objetos `Resource`, pero esa arquitectura no debería obligar al usuario a escribir detalles internos cada vez.
+
+## Arquitectura
 
 ```text
 Usuario
   │
   ▼
-API pública
+Lenguaje y API de Iter
   │
   ▼
 Resolver ──► Registry ──► Adapter
@@ -88,9 +83,17 @@ Resolver ──► Registry ──► Adapter
 - `Adapter`: ejecución de operaciones concretas.
 - `Engine`: coordinación del sistema.
 
-## Funciones previstas para la primera versión pública
+## Qué busca eliminar de la experiencia pública
 
-| Área | Operaciones previstas |
+- imports repetitivos;
+- configuración auxiliar innecesaria;
+- APIs completamente distintas para intenciones equivalentes;
+- selección manual de cada detalle del backend;
+- código de integración repetido.
+
+## Operaciones previstas para la primera versión
+
+| Área | Operaciones |
 |---|---|
 | Entrada y salida | `open`, `create`, `save`, `close` |
 | Resolución | `resolve` |
@@ -99,36 +102,27 @@ Resolver ──► Registry ──► Adapter
 | Internet | `download`, `upload` |
 | Gestión | `copy`, `move`, `rename`, `delete` |
 | Colecciones | `list`, `count`, `filter` |
-| Adaptadores | `adapters`, `register_adapter`, `unregister_adapter` |
-| Backend | `use`, `reset_backend`, `current_backend` |
-| Diagnóstico | `statistics`, `about`, `iter doctor` |
+| Backend | `use`, `reset`, `current` |
+| Diagnóstico | `about`, `capabilities`, `adapters`, `doctor` |
 
-## Qué Iter no pretende hacer
+## Lo que Iter no pretende hacer
 
-Iter no pretende borrar todas las diferencias entre bibliotecas ni afirmar que todos los backends son idénticos.
+Iter no pretende afirmar que todos los backends sean idénticos ni que todas las bibliotecas estén integradas desde el primer día.
 
 La meta es unificar las intenciones comunes sin ocultar las diferencias importantes.
-
-Tampoco se afirma que Iter sustituya Python o que ya sea un estándar. La primera versión todavía está en preparación.
 
 ## Estado actual
 
 - Versión candidata: `0.3.0-rc.2`.
 - Estado: corrección de errores y validación privada.
 - Distribución oficial: todavía no publicada.
-- Código principal: privado durante la auditoría de seguridad y licencia.
-- Próximo paso: completar la validación y preparar el lanzamiento oficial.
+- Código principal: privado durante la auditoría.
+- Próximo paso: verificar que la sintaxis pública mostrada sea realmente ejecutable.
 
-No se publicará un paquete de demostración. La primera instalación disponible corresponderá a una distribución oficial de Iter.
-
-## Por qué publicar esta vista previa
-
-La intención es mostrar el diseño, recibir observaciones técnicas y explicar el problema que Iter intenta resolver antes del lanzamiento.
-
-Toda función presentada públicamente debe corresponder a una función real y verificable.
+La forma final puede ajustarse antes del lanzamiento. No se presentará como disponible ninguna instrucción que todavía no funcione de forma verificable.
 
 ---
 
 **Iter — Everything is a Resource.**
 
-Etiquetas sugeridas para DEV o Hashnode: `python`, `programming`, `opensource-discussion`, `softwarearchitecture`, `developer-tools`
+Etiquetas sugeridas: `programming`, `softwarearchitecture`, `developer-tools`, `languages`, `python`
