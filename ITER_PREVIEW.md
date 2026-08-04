@@ -1,74 +1,65 @@
 # Iter — Vista previa técnica
 
-> Esta es una demostración de lo que ofrecerá Iter cuando se publique. Todavía no es un paquete instalable, una beta descargable ni una publicación en PyPI.
+> Esta página muestra la experiencia de usuario prevista para Iter. Todavía no es una distribución instalable ni una publicación en PyPI.
 
 ## Aprende una vez. Usa cualquier biblioteca.
 
-Las bibliotecas suelen resolver problemas parecidos mediante nombres, estructuras y flujos diferentes. Iter propone una interfaz común para expresar la intención del usuario y delegar la operación en un adaptador compatible.
+Iter no debería obligar al usuario a comenzar cada ejemplo con `import`, configurar rutas temporales ni escribir código auxiliar que no forma parte de su intención.
 
-## Crear, guardar y abrir un recurso
+La experiencia pública debe centrarse en lo que el usuario quiere hacer.
 
-```python
-from pathlib import Path
-import tempfile
+## Abrir, convertir y exportar
 
-import iter
-
-
-with tempfile.TemporaryDirectory() as folder:
-    destination = Path(folder) / "project.json"
-
-    resource = iter.create(
-        "data",
-        name=destination.name,
-        source=destination,
-        data={
-            "project": "Iter",
-            "status": "preview",
-        },
-        format="json",
-    )
-
-    iter.save(resource, parents=True)
-
-    reopened = iter.open(destination)
-    print(reopened.data)
+```iter
+data = iter open "data.json"
+csv = iter convert data to "csv"
+iter export csv as "data.csv"
 ```
 
-Salida prevista:
-
-```text
-{'project': 'Iter', 'status': 'preview'}
-```
-
-## Transformar y exportar
-
-```python
-resource = iter.open("data.json")
-converted = iter.convert(resource, "csv")
-exported = iter.export(converted, "data.csv")
-```
-
-La intención permanece clara:
+Tres intenciones claras:
 
 1. abrir un recurso;
 2. convertirlo;
 3. exportarlo.
 
-Iter se encarga de resolver el formato, consultar los adaptadores compatibles y coordinar la operación.
+Iter se encarga de identificar el recurso, resolver su formato, seleccionar un adaptador compatible y coordinar la operación.
 
-## Consultar las capacidades disponibles
+## Crear, guardar y volver a abrir
 
-```python
-print(iter.about())
-print(iter.statistics())
+```iter
+project = iter create "data" {
+    project: "Iter"
+    status: "preview"
+}
 
-for adapter in iter.adapters():
-    print(
-        adapter.name,
-        adapter.backend,
-        adapter.capabilities,
-    )
+iter save project as "project.json"
+reopened = iter open "project.json"
+show reopened.data
+```
+
+Salida prevista:
+
+```text
+{project: "Iter", status: "preview"}
+```
+
+## Usar una biblioteca o backend
+
+```iter
+iter use "pandas"
+data = iter open "sales.csv"
+summary = iter analyze data
+show summary
+```
+
+El usuario expresa la intención. Iter resuelve cómo ejecutarla mediante el backend o adaptador disponible.
+
+## Consultar las capacidades
+
+```iter
+show iter about
+show iter capabilities
+show iter adapters
 ```
 
 ## Arquitectura
@@ -77,7 +68,7 @@ for adapter in iter.adapters():
 Usuario
   │
   ▼
-API pública
+Lenguaje y API de Iter
   │
   ▼
 Resolver ──► Registry ──► Adapter
@@ -94,9 +85,17 @@ Resolver ──► Registry ──► Adapter
 - `Adapter`: ejecución de operaciones concretas.
 - `Engine`: coordinación del sistema.
 
-## Funciones previstas para la primera versión pública
+## Qué busca eliminar de la experiencia del usuario
 
-| Área | Operaciones previstas |
+- imports repetitivos;
+- configuración auxiliar innecesaria;
+- nombres completamente distintos para la misma intención;
+- selección manual de cada detalle del backend;
+- código de integración repetido.
+
+## Operaciones previstas para la primera publicación
+
+| Área | Operaciones |
 |---|---|
 | Entrada y salida | `open`, `create`, `save`, `close` |
 | Resolución | `resolve` |
@@ -105,28 +104,28 @@ Resolver ──► Registry ──► Adapter
 | Internet | `download`, `upload` |
 | Gestión | `copy`, `move`, `rename`, `delete` |
 | Colecciones | `list`, `count`, `filter` |
-| Adaptadores | `adapters`, `register_adapter`, `unregister_adapter` |
-| Backend | `use`, `reset_backend`, `current_backend` |
-| Diagnóstico | `statistics`, `about`, `iter doctor` |
-
-## Qué no se publica todavía
-
-- un paquete de demostración;
-- el código fuente privado completo;
-- Iter Server;
-- Iter Storage;
-- credenciales, tokens o datos personales;
-- herramientas internas de administración;
-- funciones que aún no hayan sido verificadas.
+| Backend | `use`, `reset`, `current` |
+| Diagnóstico | `about`, `capabilities`, `adapters`, `doctor` |
 
 ## Estado actual
 
 - Versión candidata: `0.3.0-rc.2`
 - Estado: corrección de errores y validación privada
+- Código principal: privado
 - Distribución oficial: todavía no publicada
-- Siguiente etapa: completar las pruebas, preparar el lanzamiento y publicar la instalación oficial
+- Objetivo: que los ejemplos públicos sean ejecutables con la experiencia sencilla de Iter
 
-Esta página se actualizará solamente con funciones reales y verificadas.
+La forma final de la sintaxis se validará antes del lanzamiento. No se anunciará como disponible ninguna instrucción que todavía no funcione de manera verificable.
+
+## Qué no se publica todavía
+
+- el código fuente privado completo;
+- Iter Server;
+- Iter Storage;
+- credenciales, tokens o datos personales;
+- herramientas internas de administración;
+- funciones sin pruebas verificables;
+- ningún paquete demostrativo.
 
 ---
 
