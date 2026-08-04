@@ -1,47 +1,47 @@
-# Martín Peralta
+# Iter
 
-### Software developer focused on Python, backend systems, and practical products
+### Aprende una vez. Usa cualquier biblioteca.
 
-I build software to understand complex systems, solve real problems, and turn ambitious ideas into working prototypes. My current focus is creating small, complete projects that demonstrate clean architecture, thoughtful design, and measurable progress.
+Estoy construyendo **Iter**, una interfaz universal para trabajar con recursos, formatos, bibliotecas y backends desde una API coherente.
 
-## What I work with
+## Qué problema busca resolver
 
-- **Backend:** Python, Flask, REST APIs, SQLite
-- **Web:** HTML, CSS, JavaScript
-- **Engineering:** software architecture, algorithms, data structures, testing
-- **Exploration:** automation, cybersecurity, artificial intelligence, and 3D experiences
+Cada biblioteca suele exigir nombres, estructuras y flujos distintos. Iter propone una capa común que conserva las capacidades importantes de cada backend y reduce el código de integración repetido.
 
-## What I'm building
+```python
+import iter
 
-I'm developing a collection of privacy-first mini projects, including:
+resource = iter.open("data.json")
+print(resource.data)
+```
 
-- useful web applications and APIs;
-- local automation and productivity tools;
-- a consent-based daily journal that converts captured moments into structured text;
-- optional visual and 3D reconstructions generated only when the user requests them.
+## Estado actual
 
-## Engineering principles
+- **Versión:** `0.3.0-rc.2`
+- **Etapa:** candidata de lanzamiento y validación privada
+- **Lenguaje principal:** Python
+- **Prioridades:** estabilidad, seguridad, documentación y pruebas reproducibles
 
-- Privacy and user consent by design
-- Clear, maintainable code
-- Small releases that actually work
-- Testing before claiming progress
-- Learning through real projects
+## Arquitectura
 
-## Technology
+- `Resource`: representación universal de archivos, datos y recursos web
+- `Adapter`: integración de operaciones y backends
+- `Registry`: registro y selección de adaptadores
+- `Resolver`: detección de formatos, tipos y compatibilidad
+- `Engine`: coordinación de las operaciones
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=000000)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+## Principios
 
-## Current direction
+- Everything is a Resource.
+- Probar antes de anunciar progreso.
+- Privacidad y permisos por diseño.
+- Interfaces simples sin ocultar diferencias importantes.
+- Lanzamientos pequeños, útiles y verificables.
 
-My goal is to build a strong public portfolio through useful, documented, and tested software—one finished project at a time.
+## Próximamente
+
+Se publicarán demostraciones, documentación y novedades del prelanzamiento de Iter. El código principal permanece privado mientras finalizan la auditoría de seguridad, la licencia y la preparación de la versión pública.
 
 ---
 
-> Great software begins with a real problem and improves through careful execution.
+> Iter — una interfaz común para un ecosistema de herramientas diferentes.
